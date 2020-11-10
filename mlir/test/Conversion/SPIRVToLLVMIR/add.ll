@@ -1,7 +1,7 @@
 ; RUN: mlir-translate --deserialize-spirv %S/Inputs/add.spv -o %t.spv.mlir
 ; RUN: mlir-opt --convert-spirv-to-llvm %t.spv.mlir -o %t.llvm.mlir
 ; Need to adjust %t.llvm.mlir, delete redundant top level `module{ }` construct
-; RUN: sed -i '1,3d;$d' %t.llvm.mlir
+; RUN: sed -i '1d;$d' %t.llvm.mlir
 ; RUN: mlir-translate --mlir-to-llvmir %t.llvm.mlir -o %t.ll
 ; RUN: FileCheck < %t.ll %s
 
